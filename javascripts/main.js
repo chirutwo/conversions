@@ -14,7 +14,86 @@ var typeUnits = new Map();
 var formalNames = new Map();
 var plural = new Map();
 
-//console.log(incDecButton);
+let prefixes = [
+	'quecto',
+	'ronto',
+	'yocto',
+	'zepto',
+	'atto',
+	'femto',
+	'pico',
+	'nano',
+	'micro',
+	'milli',
+	'centi',
+	'deci',
+	'deca',
+	'hecto',
+	'kilo',
+	'mega',
+	'giga',
+	'tera',
+	'peta',
+	'exa',
+	'zetta',
+	'yotta',
+	'ronna',
+	'quetta'
+];
+
+let SIvalues = [
+	1e-30,
+	1e-27,
+	1e-24,
+	1e-21,
+	1e-18,
+	1e-15,
+	1e-12,
+	1e-9,
+	1e-6,
+	1e-3,
+	1e-2,
+	1e-1,
+	10,
+	100,
+	1000,
+	1e6,
+	1e9,
+	1e12,
+	1e15,
+	1e18,
+	1e21,
+	1e24,
+	1e27,
+	1e30
+];
+
+let prefixabbrev = [
+	'q',
+	'r',
+	'y',
+	'z',
+	'a',
+	'f',
+	'p',
+	'n',
+	'μ',
+	'm',
+	'c',
+	'd',
+	'da',
+	'h',
+	'k',
+	'M',
+	'G',
+	'T',
+	'P',
+	'E',
+	'Z',
+	'Y',
+	'R',
+	'Q'
+];
 
 //Events
 incDecButton.addEventListener("click", () => {
@@ -73,241 +152,125 @@ valueIn.addEventListener("input", () => {
 unitIn.addEventListener("input", updateResult);
 
 function convert(a, b, init) {
-	var sa = unitSizes.get(a);
-	var sb = unitSizes.get(b);
+	let sa = unitSizes.get(a);
+	let sb = unitSizes.get(b);
+
 	return init * sa/sb;
 }
 
 function utility(x) {
-	if (x == 0) {
+	if (x < 0.5) {
 		return 0;
 	}
 	return Math.round(x)/x;
 }
 
 function findIncDecRoutes(init, initValue, inc, length) {
-	var initialType = unitTypes.get(init);
-	var validConversions = typeUnits.get(initialType);
+	let initialType = unitTypes.get(init);
+	let validConversions = typeUnits.get(initialType);
 
-	var currUnit = formalNames.get(init);
-	var currValue = initValue;
-	var unitHistory = [[currValue, currUnit, '0.00']];
+	let currUnit = formalNames.get(init);
+	let currValue = initValue;
+	let unitHistory = [[currValue, currUnit, '0.00']];
 
-	//if (initValue == 0) {
-	//	return [[currValue, currUnit, '0.00'], [currValue, currUnit, '0.00']];
-	//}
-	for (var i = 0; i < length; i++) {
-		var bestConversion = "";
-		if (inc) {
-			var bestMult = -1;
-		} else {
-			var bestMult = 1000000000;
-		}
-		for (var j = 0; j < validConversions.length; j++) {
-			if (validConversions[j] == currUnit) {
-				continue;
-			}
-			var newUtility = utility(convert(currUnit, validConversions[j], currValue));
-			if (((newUtility > bestMult) == inc) && (newUtility > 0)) {
-				bestConversion = validConversions[j];
-				bestMult = newUtility;
-			}
-			//console.log(validConversions[j]);
-		}
+	//console.log(currUnit, currValue, validConversions, inc, length);
 
-		if (bestConversion == "") {
-			if (validConversions[0] != currUnit) {
-				bestConversion = validConversions[0];
-				var bestMult = 0;
-			} else {
-				bestConversion = validConversions[1];
-				var bestMult = 0;
+	for (let i = 0; i < length; i++) {
+		let bestconversion = currUnit;
+		let bestutility = 1;
+
+		for (let j = 0; j < validConversions.length; j++) {
+			let newValue = convert(currUnit, validConversions[j], currValue);
+			let newutility = utility(newValue);
+
+			if (newutility === 0) continue;
+
+			if ((newutility > bestutility) === inc) {
+				bestutility = newutility;
+				bestconversion = validConversions[j];
 			}
 		}
 
-		var newValue = Math.round(convert(currUnit, bestConversion, currValue));
-		var newUnit = bestConversion;
-		var foundUnit = false;
-		for (var j = 0; j < unitHistory.length; j++) {
-			if (unitHistory[j][0] != newValue) {
-				continue;
-			}
-			if (unitHistory[j][1] != newUnit) {
-				continue;
-			}
-			foundUnit = true;
-			break;
-		}
-		if (foundUnit) {
-			break;
-		}
-		currValue = newValue;
-		currUnit = newUnit;
-		unitHistory.push([currValue, currUnit, (0.01*Math.round(10000*(bestMult-1))).toFixed(2)]);
-		//console.log(currValue, currUnit);
-	}
-	bestMult = utility(convert(currUnit, init, currValue));
-	currValue = Math.round(convert(currUnit, init, currValue));
-	currUnit = formalNames.get(init);
-	unitHistory.push([currValue, currUnit, (0.01*Math.round(10000*(bestMult-1))).toFixed(2)]);
+		if (bestutility === 1) break;
 
-	finalOut = [];
-	for (var i = 0; i < unitHistory.length; i++) {
-		finalOut.push(unitHistory[i]);
-		if ((unitHistory[i][0] == unitHistory[unitHistory.length - 1][0]) && 
-			(unitHistory[i][1] == unitHistory[unitHistory.length - 1][1])) {
-			break;
-		}
+		currValue = Math.round(convert(currUnit, bestconversion, currValue));
+		currUnit = bestconversion;
+
+		unitHistory.push([currValue, currUnit, (100 * (bestutility - 1)).toFixed(2)]);
 	}
 
-	if (finalOut.length == 1) {
-		finalOut.push([initValue, currUnit, '0.00']);
+	if (currUnit === formalNames.get(init)) return unitHistory;
+
+	currValue = convert(currUnit, formalNames.get(init), currValue);
+	let newutility = utility(currValue);
+
+	if (inc) {
+		unitHistory.push([Math.round(currValue), formalNames.get(init), (100 * (newutility - 1)).toFixed(2)]);
+	} else {
+		unitHistory.push([currValue.toFixed(3), formalNames.get(init), '0.00']);
 	}
 
-	return finalOut;
+	return unitHistory;
 }
 
-/*
-fetch("configs/units.yaml")
+//fetch("configs/units.yaml")
+fetch("https://raw.githubusercontent.com/ArolaunTech/conversions/main/configs/units.yaml")
 	.then(response => response.text())
 	.then(text => {
-		const units = jsyaml.loadAll(text);
+		let units = jsyaml.loadAll(text);
+		const numunits = units.length;
+
+		for (let i = 0; i < numunits; i++) {
+			for (let j = 0; j < prefixes.length; j++) {
+				let abbreviations = [
+					prefixes[j] + units[i].abbreviations[0],
+					prefixes[j] + units[i].abbreviations[1]
+				];
+
+				for (let k = 2; k < units[i].abbreviations.length; k++) {
+					abbreviations.push(prefixabbrev[j] + units[i].abbreviations[k]);
+				}
+
+				units.push({
+					internalNameSingular: prefixes[j] + units[i].internalNameSingular,
+					internalNamePlural: prefixes[j] + units[i].internalNamePlural,
+					SIconversion: SIvalues[j] * units[i].SIconversion,
+					abbreviations: abbreviations,
+					unitType: units[i].unitType
+				});
+			}
+		}
+
 		console.log(units);
+
+		for (let i = 0; i < units.length; i++) {
+			if (typeUnits.has(units[i].unitType)) {
+				typeUnits.get(units[i].unitType).push(units[i].internalNameSingular);
+			} else {
+				typeUnits.set(units[i].unitType, [units[i].internalNameSingular]);
+			}
+
+			unitSizes.set(units[i].internalNameSingular, units[i].SIconversion);
+ 			unitTypes.set(units[i].internalNameSingular, units[i].unitType);
+ 			formalNames.set(units[i].internalNameSingular, units[i].internalNameSingular);
+ 			plural.set(units[i].internalNameSingular, units[i].internalNamePlural);
+
+ 			unitSizes.set(units[i].internalNamePlural, units[i].SIconversion);
+ 			unitTypes.set(units[i].internalNamePlural, units[i].unitType);
+ 			formalNames.set(units[i].internalNamePlural, units[i].internalNameSingular);
+ 			plural.set(units[i].internalNamePlural, units[i].internalNamePlural);
+
+ 			for (let j = 0; j < units[i].abbreviations.length; j++) {
+ 				let option = document.createElement('option');
+ 				option.value = units[i].abbreviations[j];
+ 				unitOptions.appendChild(option);
+
+ 				unitSizes.set(units[i].abbreviations[j], units[i].SIconversion);
+ 				unitTypes.set(units[i].abbreviations[j], units[i].unitType);
+ 				formalNames.set(units[i].abbreviations[j], units[i].internalNameSingular);
+ 				plural.set(units[i].abbreviations[j], units[i].internalNamePlural);
+ 			}
+		}
+
+		updateResult();
 	});
-*/
-
-var text = `---
-internalNameSingular: "meter"
-internalNamePlural: "meters"
-SIconversion: 1
-unitType: "length"
-
-abbreviations:
-  - "meter"
-  - "meters"
-  - "m"
-
----
-internalNameSingular: "kilometer"
-internalNamePlural: "kilometers"
-SIconversion: 1000
-unitType: "length"
-
-abbreviations:
-  - "kilometer"
-  - "kilometers"
-  - "km"
-
----
-internalNameSingular: "centimeter"
-internalNamePlural: "centimeters"
-SIconversion: 0.01
-unitType: "length"
-
-abbreviations:
-  - "centimeter"
-  - "centimeters"
-  - "cm"
-
----
-internalNameSingular: "foot"
-internalNamePlural: "feet"
-SIconversion: 0.3048
-unitType: "length"
-
-abbreviations:
-  - "foot"
-  - "feet"
-  - "ft"
-
----
-internalNameSingular: "fathom"
-internalNamePlural: "fathoms"
-SIconversion: 1.8288
-unitType: "length"
-
-abbreviations:
-  - "fathom"
-  - "fathoms"
-  - "ftm"
-
----
-internalNameSingular: "inch"
-internalNamePlural: "inches"
-SIconversion: 0.0254
-unitType: "length"
-
-abbreviations:
-  - "inch"
-  - "inches"
-  - "in"
-
----
-internalNameSingular: "thou"
-internalNamePlural: "thou"
-SIconversion: 0.0000254
-unitType: "length"
-
-abbreviations:
-  - "mil"
-  - "mils"
-  - "thou"
-
----
-internalNameSingular: "yard"
-internalNamePlural: "yards"
-SIconversion: 0.9144
-unitType: "length"
-
-abbreviations:
-  - "yard"
-  - "yards"
-  - "yd"
-
----
-internalNameSingular: "mile"
-internalNamePlural: "miles"
-SIconversion: 1609.344
-unitType: "length"
-
-abbreviations:
-  - "mile"
-  - "miles"
-  - "mi"
-
----
-internalNameSingular: "kilogram"
-internalNamePlural: "kilograms"
-SIconversion: 1
-unitType: "mass"
-
-abbreviations:
-  - "kilogram"
-  - "kilograms"
-  - "kg"`;
-
-const units = jsyaml.loadAll(text);
-//console.log(units);
-
-for (var i = 0; i < units.length; i++) {
-	if (typeUnits.has(units[i].unitType)) {
-		typeUnits.get(units[i].unitType).push(units[i].internalNameSingular);
-	} else {
-		typeUnits.set(units[i].unitType, [units[i].internalNameSingular]);
-	}
-
- 	for (var j = 0; j < units[i].abbreviations.length; j++) {
- 		var option = document.createElement('option');
- 		option.value = units[i].abbreviations[j];
- 		unitOptions.appendChild(option);
-
- 		unitSizes.set(units[i].abbreviations[j], units[i].SIconversion);
- 		unitTypes.set(units[i].abbreviations[j], units[i].unitType);
- 		formalNames.set(units[i].abbreviations[j], units[i].internalNameSingular);
- 		plural.set(units[i].abbreviations[j], units[i].internalNamePlural);
- 	}
-}
-
-console.log(typeUnits);
-
-updateResult();
