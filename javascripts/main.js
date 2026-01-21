@@ -214,7 +214,7 @@ function findIncDecRoutes(init, initValue, inc, length) {
 }
 
 //fetch("configs/units.yaml")
-fetch("https://raw.githubusercontent.com/ArolaunTech/conversions/main/configs/units.yaml")
+fetch("https://raw.githubusercontent.com/chirutwo/conversions/main/configs/units.yaml")
 	.then(response => response.text())
 	.then(text => {
 		let units = jsyaml.loadAll(text);
