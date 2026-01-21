@@ -1,230 +1,230 @@
----
-internalNameSingular: "meter"
-internalNamePlural: "meters"
-SIconversion: 1
-unitType: "length"
+#---
+#internalNameSingular: "meter"
+#internalNamePlural: "meters"
+#SIconversion: 1
+#unitType: "length"
 
-abbreviations:
-  - "meter"
-  - "meters"
-  - "m"
+#abbreviations:
+#  - "meter"
+#  - "meters"
+#  - "m"
 
----
-internalNameSingular: "foot"
-internalNamePlural: "feet"
-SIconversion: 0.3048
-unitType: "length"
+#---
+#internalNameSingular: "foot"
+#internalNamePlural: "feet"
+#SIconversion: 0.3048
+#unitType: "length"
 
-abbreviations:
-  - "foot"
-  - "feet"
-  - "ft"
-
----
-internalNameSingular: "fathom"
-internalNamePlural: "fathoms"
-SIconversion: 1.8288
-unitType: "length"
-
-abbreviations:
-  - "fathom"
-  - "fathoms"
-  - "ftm"
-
----
-internalNameSingular: "inch"
-internalNamePlural: "inches"
-SIconversion: 0.0254
-unitType: "length"
-
-abbreviations:
-  - "inch"
-  - "inches"
-  - "in"
+#abbreviations:
+#  - "foot"
+#  - "feet"
+#  - "ft"
+#
+#---
+#internalNameSingular: "fathom"
+#internalNamePlural: "fathoms"
+#SIconversion: 1.8288
+#unitType: "length"
+#
+#abbreviations:
+#  - "fathom"
+#  - "fathoms"
+#  - "ftm"
 
 ---
-internalNameSingular: "thou"
-internalNamePlural: "thou"
-SIconversion: 0.0000254
-unitType: "length"
+#internalNameSingular: "inch"
+#internalNamePlural: "inches"
+#SIconversion: 0.0254
+#unitType: "length"
 
-abbreviations:
-  - "mil"
-  - "mils"
-  - "thou"
+#abbreviations:
+#  - "inch"
+#  - "inches"
+#  - "in"
+#
+#---
+#internalNameSingular: "thou"
+#internalNamePlural: "thou"
+#SIconversion: 0.0000254
+#unitType: "length"
+#
+#abbreviations:
+#  - "mil"
+#  - "mils"
+#  - "thou"
+#
+#---
+#internalNameSingular: "yard"
+#internalNamePlural: "yards"
+#SIconversion: 0.9144
+#unitType: "length"
+#
+#abbreviations:
+#  - "yard"
+#  - "yards"
+#  - "yd"
+#
+#---
+#internalNameSingular: "mile"
+#internalNamePlural: "miles"
+#SIconversion: 1609.344
+#unitType: "length"
+#
+#abbreviations:
+#  - "mile"
+#  - "miles"
+#  - "mi"
+#
+#---
+#internalNameSingular: "angstrom"
+#internalNamePlural: "angstroms"
+#SIconversion: 0.0000000001
+#unitType: "length"
+#
+#abbreviations:
+#  - "angstrom"
+#  - "angstroms"
+#  - "Å"
+#
+#---
+#internalNameSingular: "Bohr radius"
+#internalNamePlural: "Bohr radii"
+#SIconversion: 0.0000000000529177210544
+#unitType: "length"
+#
+#abbreviations:
+#  - "Bohr radius"
+#  - "Bohr radii"
+#  - "r_Bohr"
+#  - "a_0"
+#
+#---
+#internalNameSingular: "astronomical unit"
+#internalNamePlural: "astronomical units"
+#SIconversion: 149597870700
+#unitType: "length"
+#
+#abbreviations:
+#  - "astronomical unit"
+#  - "astronomical units"
+#  - "AU"
+#  - "au"
+#
+#---
+#internalNameSingular: "chain"
+#internalNamePlural: "chains"
+#SIconversion: 20.1168
+#unitType: "length"
+#
+#abbreviations:
+#  - "chain"
+#  - "chains"
+#  - "ch"
+#
+#---
+#internalNameSingular: "link"
+#internalNamePlural: "links"
+#SIconversion: 0.201168
+#unitType: "length"
+#
+#abbreviations:
+#  - "link"
+#  - "links"
+#  - "l."
+#  - "li."
+#  - "lnk."
+#
+#---
+#internalNameSingular: "rod"
+#internalNamePlural: "rods"
+#SIconversion: 5.0292
+#unitType: "length"
+#
+#abbreviations:
+#  - "rod"
+#  - "perch"
+#  - "pole"
+#  - "lug"
+#
+#---
+#internalNameSingular: "furlong"
+#internalNamePlural: "furlongs"
+#SIconversion: 201.1680
+#unitType: "length"
+#
+#abbreviations:
+#  - "furlong"
+#  - "furlongs"
+#  - "fur"
+#
+#---
+#internalNameSingular: "nautical mile"
+#internalNamePlural: "nautical miles"
+#SIconversion: 1852
+#unitType: "length"
+#
+#abbreviations:
+#  - "nautical mile"
+#  - "nautical miles"
+#  - "M"
+#  - "NM"
+#  - "nmi"
+#
+#---
+#internalNameSingular: "hand"
+#internalNamePlural: "hands"
+#SIconversion: 0.1016
+#unitType: "length"
+#
+#abbreviations:
+#  - "hand"
+#  - "hands"
+#  - "h"
+#  - "hh"
 
----
-internalNameSingular: "yard"
-internalNamePlural: "yards"
-SIconversion: 0.9144
-unitType: "length"
-
-abbreviations:
-  - "yard"
-  - "yards"
-  - "yd"
-
----
-internalNameSingular: "mile"
-internalNamePlural: "miles"
-SIconversion: 1609.344
-unitType: "length"
-
-abbreviations:
-  - "mile"
-  - "miles"
-  - "mi"
-
----
-internalNameSingular: "angstrom"
-internalNamePlural: "angstroms"
-SIconversion: 0.0000000001
-unitType: "length"
-
-abbreviations:
-  - "angstrom"
-  - "angstroms"
-  - "Å"
-
----
-internalNameSingular: "Bohr radius"
-internalNamePlural: "Bohr radii"
-SIconversion: 0.0000000000529177210544
-unitType: "length"
-
-abbreviations:
-  - "Bohr radius"
-  - "Bohr radii"
-  - "r_Bohr"
-  - "a_0"
-
----
-internalNameSingular: "astronomical unit"
-internalNamePlural: "astronomical units"
-SIconversion: 149597870700
-unitType: "length"
-
-abbreviations:
-  - "astronomical unit"
-  - "astronomical units"
-  - "AU"
-  - "au"
-
----
-internalNameSingular: "chain"
-internalNamePlural: "chains"
-SIconversion: 20.1168
-unitType: "length"
-
-abbreviations:
-  - "chain"
-  - "chains"
-  - "ch"
-
----
-internalNameSingular: "link"
-internalNamePlural: "links"
-SIconversion: 0.201168
-unitType: "length"
-
-abbreviations:
-  - "link"
-  - "links"
-  - "l."
-  - "li."
-  - "lnk."
-
----
-internalNameSingular: "rod"
-internalNamePlural: "rods"
-SIconversion: 5.0292
-unitType: "length"
-
-abbreviations:
-  - "rod"
-  - "perch"
-  - "pole"
-  - "lug"
-
----
-internalNameSingular: "furlong"
-internalNamePlural: "furlongs"
-SIconversion: 201.1680
-unitType: "length"
-
-abbreviations:
-  - "furlong"
-  - "furlongs"
-  - "fur"
-
----
-internalNameSingular: "nautical mile"
-internalNamePlural: "nautical miles"
-SIconversion: 1852
-unitType: "length"
-
-abbreviations:
-  - "nautical mile"
-  - "nautical miles"
-  - "M"
-  - "NM"
-  - "nmi"
-
----
-internalNameSingular: "hand"
-internalNamePlural: "hands"
-SIconversion: 0.1016
-unitType: "length"
-
-abbreviations:
-  - "hand"
-  - "hands"
-  - "h"
-  - "hh"
-
----
-internalNameSingular: "light-year"
-internalNamePlural: "light-years"
-SIconversion: 9460730472580800
-unitType: "length"
-
-abbreviations:
-  - "light-year"
-  - "light-years"
-  - "ly"
-
----
-internalNameSingular: "parsec"
-internalNamePlural: "parsecs"
-SIconversion: 30856775814913673
-unitType: "length"
-
-abbreviations:
-  - "parsec"
-  - "parsecs"
-  - "pc"
-
----
-internalNameSingular: "point"
-internalNamePlural: "points"
-SIconversion: 0.000254
-unitType: "length"
-
-abbreviations:
-  - "point"
-  - "points"
-  - "pt"
-
----
-internalNameSingular: "span"
-internalNamePlural: "spans"
-SIconversion: 0.2286
-unitType: "length"
-
-abbreviations:
-  - "span"
-  - "spans"
-  
+#---
+#internalNameSingular: "light-year"
+#internalNamePlural: "light-years"
+#SIconversion: 9460730472580800
+#unitType: "length"
+#
+#abbreviations:
+#  - "light-year"
+#  - "light-years"
+#  - "ly"
+#
+#---
+#internalNameSingular: "parsec"
+#internalNamePlural: "parsecs"
+#SIconversion: 30856775814913673
+#unitType: "length"
+#
+#abbreviations:
+#  - "parsec"
+#  - "parsecs"
+#  - "pc"
+#
+#---
+#internalNameSingular: "point"
+#internalNamePlural: "points"
+#SIconversion: 0.000254
+#unitType: "length"
+#
+#abbreviations:
+#  - "point"
+#  - "points"
+#  - "pt"
+#
+#---
+#internalNameSingular: "span"
+#internalNamePlural: "spans"
+#SIconversion: 0.2286
+#unitType: "length"
+#
+#abbreviations:
+#  - "span"
+#  - "spans"
+#  
 ---
 internalNameSingular: "planck length"
 internalNamePlural: "planck lengths"
