@@ -224,3 +224,14 @@ unitType: "length"
 abbreviations:
   - "span"
   - "spans"
+  
+---
+internalNameSingular: "planck length"
+internalNamePlural: "planck lengths"
+SIconversion: 0.000000000000000000000000000000000016
+unitType: "length"
+
+abbreviations:
+  - "planck length"
+  - "planck lengths"
+
